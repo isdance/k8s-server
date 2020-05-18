@@ -16,6 +16,7 @@ RUN pip install --upgrade pip &&\
 
 ## Step 4:
 # Load env variables
+ENV APP_SETTINGS config.DevelopmentConfig
 ENV DATABASE_URL postgres://isdance:51315704@localhost:5432/demo
 
 ## Step 5:

@@ -1,5 +1,5 @@
-flask
-psycopg2
+Flask
+psycopg2-binary
 flask_sqlalchemy
 pylint
 black
