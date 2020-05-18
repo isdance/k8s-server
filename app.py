@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 # from models import Cars
+from flask_marshmallow import Marshmallow
 import os
 
 app = Flask(__name__)
@@ -23,11 +24,22 @@ class Cars(db.Model):
         return '<id {}>'.format(self.id)
 
 
+ma = Marshmallow(app)
+
+
+class CarsSchema(ma.Schema):
+    class Meta:
+        fields = ('id','type','model')
+
+
 @app.route('/')
 def hello():
     cars = Cars.query.all()
-    return jsonify(cars)
+    cars_schema = CarsSchema(many=True) 
+    result = cars_schema.dump(cars)
+    return jsonify(result)
 
 
 if __name__ == '__main__':
     app.run()
+
