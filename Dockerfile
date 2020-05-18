@@ -15,9 +15,13 @@ RUN pip install --upgrade pip &&\
     pip install --trusted-host pypi.python.org -r requirements.txt
 
 ## Step 4:
+# Load env variables
+ENV DATABASE_URL postgres://isdance:51315704@localhost:5432/demo
+
+## Step 5:
 # Expose port 80
 EXPOSE 80
 
-## Step 5:
+## Step 6:
 # Run app.py at container launch
 CMD ["python", "app.py"]
