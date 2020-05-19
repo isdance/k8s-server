@@ -12,9 +12,7 @@ COPY . /app
 # Install packages from requirements.txt
 # hadolint ignore=DL3013
 RUN pip install --upgrade pip &&\
-    pip install build-deps gcc python3-dev musl-dev postgresql-dev
-
-RUN  pip install --trusted-host pypi.python.org -r requirements.txt
+      pip install --trusted-host pypi.python.org -r requirements.txt
 
 ## Step 4:
 # Load env variables
@@ -25,14 +23,4 @@ ENV DATABASE_URL postgres://isdance:51315704@localhost:5432/demo
 # Expose port 5000
 EXPOSE 5000
 
-## Step 6:
-# Run app.py at container launch
-ENTRYPOINT gunicorn \
-    --access-logfile="-"                   \
-    --error-logfile="-"                    \
-    --bind=0.0.0.0:5000                    \
-    --worker-class=sync                    \
-    --workers=1                            \
-    --keep-alive=10                        \
-    --graceful-timeout=10                  \
-    app:app
+CMD [ "python", "app.py" ]
