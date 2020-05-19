@@ -3,4 +3,5 @@ psycopg2-binary
 flask_sqlalchemy
 pylint
 black
+gunicorn
 flask_marshmallow
