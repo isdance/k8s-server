@@ -3,7 +3,7 @@ from sqlalchemy.dialects.postgresql import JSON
 
 
 class Cars(db.Model):
-    __tablename__ = 'cars'
+    __tablename__ = "cars"
 
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String())
@@ -14,4 +14,4 @@ class Cars(db.Model):
         self.model = model
 
     def __repr__(self):
-        return '<id {}>'.format(self.id)
+        return "<id {}>".format(self.id)
