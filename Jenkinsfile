@@ -8,7 +8,7 @@ pipeline {
     stage('build') {
       steps {
         sh 'make setup'
-        sh 'source ~/.server-proj/bin/activate'
+        sh '. ~/.server-proj/bin/activate'
         sh 'make install'
       }
     }
