@@ -1,7 +1,7 @@
 Flask
 psycopg2-binary
 flask_sqlalchemy
-pylint
+flake8
 black
 gunicorn
 flask_marshmallow
