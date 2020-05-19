@@ -20,8 +20,8 @@ ENV APP_SETTINGS config.DevelopmentConfig
 ENV DATABASE_URL postgres://isdance:51315704@localhost:5432/demo
 
 ## Step 5:
-# Expose port 80
-EXPOSE 80
+# Expose port 5000
+EXPOSE 5000
 
 ## Step 6:
 # Run app.py at container launch
