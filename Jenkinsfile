@@ -1,11 +1,12 @@
 pipeline {
-  agent any
+  agent none
   environment {
     CI = 'true'
     HOME = '.'
   }
   stages {
     stage('build') {
+      agent { docker { image 'python:3.7.2' } }
       steps {
         sh 'make setup'
         sh '. ~/.server-proj/bin/activate'
@@ -13,11 +14,13 @@ pipeline {
       }
     }
     stage('lint') {
+      agent { docker { image 'python:3.7.2' } }
       steps {
         sh 'make lint'
       }
     }
     stage('Build Docker Image') {
+      agent any
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''
@@ -28,6 +31,7 @@ pipeline {
 		}
 
 		stage('Push Image To Dockerhub') {
+      agent any
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''
