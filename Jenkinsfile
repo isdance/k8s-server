@@ -7,8 +7,6 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh 'make setup'
-        sh '. ~/.server-proj/bin/activate'
         sh 'make install'
       }
     }
