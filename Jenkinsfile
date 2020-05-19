@@ -5,17 +5,17 @@ pipeline {
     HOME = '.'
   }
   stages {
-    stage('build') {
+    stage('setup') {
       agent { docker { image 'python:3.7.2' } }
       steps {
         sh 'make setup'
         sh '. ~/.server-proj/bin/activate'
-        sh 'make install'
       }
     }
     stage('lint') {
       agent { docker { image 'python:3.7.2' } }
       steps {
+        sh 'make install'
         sh 'make lint'
       }
     }
